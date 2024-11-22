@@ -3,48 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;400;600&display=swap" rel="stylesheet">
     <title>Em busca da cidade perdida</title>
+    <style>
+        /* CSS */
+        body {
+            background-color: #1D4221;
+            color: white;
+            font-family: "Bai Jamjuree", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            text-align: center;
+            max-width: 90%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #64A712;
+            color: white;
+            font-family: "Bai Jamjuree", sans-serif;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #4e7f0e;
+        }
+
+        .passo {
+            display: none;
+        }
+
+        .passo.ativo {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
 </head>
 <body>
     <main>
+        <!-- Passo 0: Introdução à cidade perdida -->
         <div class="passo ativo" id="passo-0">
-            <img src="img/cenario-passo0.png" alt="">
+            <img src="img/cenario-passo0.png" alt="Cena inicial: A carta encontrada no livro sobre a cidade perdida">
             <p>Um dia, dentro de um livro da biblioteca da escola, eu descobri uma carta sobre uma cidade perdida. Decidi segui-la!</p>
             <button class="btn-proximo" data-proximo="1">Rio de Janeiro</button>
             <button class="btn-proximo" data-proximo="2">Pernambuco</button>
         </div>
 
+        <!-- Passo 1: Rio de Janeiro -->
         <div class="passo" id="passo-1">
             <p>Você está no Rio de Janeiro, subindo o Pico da Tijuca.</p>
             <button class="btn-proximo" data-proximo="3">Procurar a pista</button>
             <button class="btn-proximo" data-proximo="4">Voltar para casa</button>
         </div>
 
+        <!-- Passo 2: Pernambuco -->
         <div class="passo" id="passo-2">
             <p>Em Pernambuco, você está em Olinda procurando a próxima pista.</p>
             <button class="btn-proximo" data-proximo="5">Investigar igrejas</button>
             <button class="btn-proximo" data-proximo="6">Explorar praias</button>
         </div>
 
+        <!-- Passo 3: Amazonas -->
         <div class="passo" id="passo-3">
             <p>No topo do Pico da Tijuca, você encontra uma pista indicando o Amazonas.</p>
             <button class="btn-proximo" data-proximo="7">Seguir para o Amazonas</button>
         </div>
 
+        <!-- Passo 4: Voltar para casa -->
         <div class="passo" id="passo-4">
-            <img src="img/cenario-passo4-voltar-casa.png" alt="imagem de desistência">
+            <img src="img/cenario-passo4-voltar-casa.png" alt="Imagem de desistência: voltar para casa após parar a busca pela cidade perdida">
             <p>Você volta para casa, mas sempre se pergunta o que poderia ter encontrado.</p>
         </div>
 
+        <!-- Passo 11: Cidade perdida -->
         <div class="passo" id="passo-11">
-            <img src="img/cenario-passo11-cidade-perdida.png" alt="cidade perdida">
+            <img src="img/cenario-passo11-cidade-perdida.png" alt="Imagem da cidade perdida e seus tesouros">
             <p>Você encontra a cidade perdida e seus tesouros.</p>
         </div>
     </main>
-    <script src="script.js"></script>
+    <script>
+        // JavaScript
+        document.querySelectorAll('.btn-proximo').forEach(button => {
+            button.addEventListener('click', function() {
+                // Obtenha o número do próximo passo
+                const proximoPasso = this.getAttribute('data-proximo');
+                
+                // Ocultar o passo atual
+                document.querySelector('.passo.ativo').classList.remove('ativo');
+                
+                // Mostrar o próximo passo
+                document.getElementById(`passo-${proximoPasso}`).classList.add('ativo');
+            });
+        });
+    </script>
 </body>
 </html>
