@@ -1,3 +1,10 @@
+/* Resetando margens e padding para evitar inconsistências */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #1D4221;
     color: white;
@@ -5,14 +12,47 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 700px;
+    min-height: 100vh; /* Usando 100% da altura da tela */
     margin: 0;
+    padding: 20px; /* Adicionando algum espaço nas bordas */
+}
+
+main {
+    text-align: center;
+    max-width: 90%; /* Limite de largura */
+    max-height: 90vh; /* Limite de altura */
+    overflow-y: auto; /* Permitir rolagem se o conteúdo ultrapassar a altura */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    max-width: 100%; /* Ajuste para garantir que a imagem não ultrapasse a largura do contêiner */
+    height: auto;
+    margin-bottom: 20px;
 }
 
 button {
     background-color: #64A712;
     color: white;
     font-family: "Bai Jamjuree", sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 200px; /* Definir uma largura consistente para os botões */
+}
+
+button:hover {
+    background-color: #4e7f0e;
 }
 
 .passo {
@@ -20,14 +60,23 @@ button {
 }
 
 .passo.ativo {
-    display:block;
+    display: block;
 }
 
-main {
-    text-align: center;
-    max-width: 90%;
-}
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    main {
+        max-width: 100%; /* Permitir que o main ocupe toda a largura da tela em dispositivos pequenos */
+        padding: 15px;
+    }
 
-img {
-    max-width: 90%;
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+        width: 150px; /* Botões menores em telas pequenas */
+    }
+
+    img {
+        max-width: 95%; /* Ajustar a largura da imagem para dispositivos menores */
+    }
 }
